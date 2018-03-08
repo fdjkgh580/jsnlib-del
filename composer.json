@@ -1,0 +1,15 @@
+{
+    "name": "jsnlib/del",
+    "type": "library",
+    "description": "",
+    "keywords": ["array", "object", "convert", "ArrayObject"],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jsnlib\\": "src\\"
+        }
+    }
+}
