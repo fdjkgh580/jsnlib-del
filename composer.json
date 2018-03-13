@@ -2,7 +2,7 @@
     "name": "jsnlib/del",
     "type": "library",
     "description": "",
-    "keywords": ["array", "object", "convert", "ArrayObject"],
+    "keywords": ["delete", "file", "dir", "smart"],
     "license": "MIT",
     "require": {
         "php": ">=5.2.4"
