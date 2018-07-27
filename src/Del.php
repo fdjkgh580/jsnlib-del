@@ -25,6 +25,7 @@ class Del {
         $newdir = trim($dir, "\ /") . "/";
         $open   = scandir($newdir);
         
+
         if (is_array($open)) 
         {
             
@@ -52,10 +53,23 @@ class Del {
     
     private function del(): bool
     {
+        $is_delete = false;
+
         //先刪檔案再刪路徑
-        foreach ($this->listary['file'] as $val) unlink($val);
-        foreach ($this->listary['dir'] as $val) rmdir($val);
-        return true;     
+        foreach ($this->listary['file'] as $val)
+        {
+            if ($is_delete === false) $is_delete = true;
+            
+            unlink($val);
+        }
+        foreach ($this->listary['dir'] as $val)
+        {
+            if ($is_delete === false) $is_delete = true;
+
+            rmdir($val);
+        }
+
+        return $is_delete;     
     }
     
     /*
@@ -65,10 +79,18 @@ class Del {
     {
         //倒轉dir陣列
         $this->listary['dir'] = array_reverse($this->listary['dir']);
+
         //加入自己
-        $this->listary['dir'][] = trim($this->dir, "\ /") . "\\";
-        $this->del();
-        return true;
+        if (empty($this->dir))
+        {
+            $this->listary['dir'] = [];
+        }
+        else 
+        {
+            $this->listary['dir'][] = trim($this->dir, "\ /") . "\\";
+        }
+
+        return $this->del();
     }
     
     /*
